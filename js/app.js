@@ -1,6 +1,9 @@
-// --- build empty game table
+// --- build empty game table ---
 function initGameBoard(boardSize) {
     var gameBoard = {};
+    gameBoard.visitedStyle = {
+        1: 'visited'
+    };
     gameBoard.size = boardSize;
     gameBoard.rows = [];
     for (var y =0; y < boardSize; y++) {
@@ -16,6 +19,7 @@ function initGameBoard(boardSize) {
     return gameBoard;
 }
 
+// --- main ---
 (function() {
     var mineSweeperApp = angular.module('mineSweeperApp', []);
 
