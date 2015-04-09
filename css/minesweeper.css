@@ -1,6 +1,7 @@
 .gameTable { 
     border: 8px solid black;
     padding: 0px;
+    border-spacing: 0;
 }
 .gameTable td { 
     width: 40px; 
@@ -14,6 +15,6 @@
     border-right: #eee solid 4px; 
 }
 .gameTable td.visited {
-    background-color: #fff;
-    border-width: 0px;
+    background-color: #eee;
+    border: 1px solid #ddd;
 }

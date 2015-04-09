@@ -6,7 +6,7 @@ function initGameBoard(boardSize) {
     };
     gameBoard.size = boardSize;
     gameBoard.rows = [];
-    for (var y =0; y < boardSize; y++) {
+    for (var y = 0; y < boardSize; y++) {
         var gameBoardRow = {}
         gameBoardRow.cells = [];
         for (var x = 0; x < boardSize; x++) {
