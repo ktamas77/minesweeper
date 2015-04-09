@@ -4,7 +4,11 @@ function initGameBoard(boardSize, maxMines) {
     var gameBoard = {}
     
     gameBoard.resetBoard = function(boardSize) {
+        this.gameStatus = 'new';
+        this.maxMines = 0;
+        this.totalVisited = 0;
         this.size = boardSize;
+        this.totalCells = boardSize * boardSize;
         this.rows = [];
         for (var y = 0; y < this.size; y++) {
             var gameBoardRow = {}
@@ -16,11 +20,18 @@ function initGameBoard(boardSize, maxMines) {
                     mineNum: 0,
                     cellStyle: 'default',
                     visit: function() {
-                        this.visited = 1;
-                        if (this.mine == 0) {
-                            this.cellStyle = 'visited';
-                        } else {
-                            this.cellStyle = 'mine';
+                        if (gameBoard.gameStatus == 'new') {
+                            this.visited = 1;
+                            if (this.mine == 0) {
+                                this.cellStyle = 'visited';
+                                gameBoard.totalVisited++;
+                                if (gameBoard.totalVisited == gameBoard.totalCells - gameBoard.maxMines) {
+                                    gameBoard.gameStatus = 'won';
+                                }
+                            } else {
+                                this.cellStyle = 'mine';
+                                gameBoard.gameStatus = 'lost';
+                            }
                         }
                     }
                 };
@@ -35,8 +46,12 @@ function initGameBoard(boardSize, maxMines) {
     };
 
     gameBoard.addMines = function(maxMines) {
+        if (maxMines > this.totalCells) {
+            maxMines = totalCells;
+        }
+        this.maxMines = maxMines;
         var minesAdded = 0;
-        while (minesAdded < maxMines) {
+        while (minesAdded < this.maxMines) {
             x = Math.round(Math.random() * (this.size - 1));
             y = Math.round(Math.random() * (this.size - 1));
             cell = this.getCell(x, y);
@@ -73,6 +88,13 @@ function initGameBoard(boardSize, maxMines) {
         }        
     }
 
+    gameBoard.restart = function() {
+        maxMines = this.maxMines;
+        gameBoard.resetBoard(this.size);
+        gameBoard.addMines(maxMines);
+        gameBoard.addNumbers();        
+    }
+
     gameBoard.resetBoard(boardSize);
     gameBoard.addMines(maxMines);
     gameBoard.addNumbers();
@@ -85,7 +107,7 @@ function initGameBoard(boardSize, maxMines) {
     var mineSweeperApp = angular.module('mineSweeperApp', []);
 
     mineSweeperApp.controller('GameboardController', ['$scope', function ($scope) {
-        $scope.gameBoard = initGameBoard(10, 10);
+        $scope.gameBoard = initGameBoard(boardSize, maxMines);
     }]);
 
 })();

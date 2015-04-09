@@ -38,3 +38,33 @@
     cursor: default;
 }
 
+.gameTable div.cellNum {
+    text-align: center;
+    font-family: arial, verdana;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+div.gameover {
+    border: 2px solid black;
+    background-color: red;
+    color: white;
+    width: 200px;
+    padding: 4px;
+    font-family: verdana, arial;
+    font-size: 12px;
+    margin: 4px;
+    cursor: pointer;
+}
+
+div.won {
+    border: 2px solid black;
+    background-color: green;
+    color: white;
+    width: 200px;
+    padding: 4px;
+    font-family: verdana, arial;
+    font-size: 12px;
+    margin: 4px;
+    cursor: pointer;
+}
