@@ -9,8 +9,8 @@
         <table class="gameTable">
             <tr ng-repeat="gameRow in gameBoard.rows">
                 <td ng-repeat="cell in gameRow.cells" 
-                    ng-click="cell.visited = 1" 
-                    class="ng-class:gameBoard.visitedStyle[cell.visited]">
+                    ng-click="cell.visit()" 
+                    class="ng-class:cell.cellStyle">
                 </td>
             </tr>
         </table>

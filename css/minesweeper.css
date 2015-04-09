@@ -16,7 +16,7 @@
 }
 
 .gameTable td:hover {
-    background-color: #dde;
+    background-color: #999;
     cursor: pointer;
 }
 
@@ -28,5 +28,9 @@
 .gameTable td.visited:hover {
     background-color: #eee;
     cursor: default;
+}
+
+.gameTable td.mine {
+    background-color: red;
 }
 
