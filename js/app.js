@@ -6,13 +6,14 @@ function initGameBoard(boardSize, maxMines) {
     gameBoard.resetBoard = function(boardSize) {
         this.size = boardSize;
         this.rows = [];
-        for (var y = 0; y < boardSize; y++) {
+        for (var y = 0; y < this.size; y++) {
             var gameBoardRow = {}
             gameBoardRow.cells = [];
-            for (var x = 0; x < boardSize; x++) {
+            for (var x = 0; x < this.size; x++) {
                 var cell = {
                     visited: 0,
                     mine: 0,
+                    mineNum: 0,
                     cellStyle: 'default',
                     visit: function() {
                         this.visited = 1;
@@ -46,8 +47,35 @@ function initGameBoard(boardSize, maxMines) {
         }
     }
 
+    gameBoard.countSurroundingMines = function(startX, startY) {
+        mineNum = 0;
+        for (var x = -1; x < 2; x++) {
+            for (var y = -1; y < 2; y++) {
+                xPos = startX + x;
+                yPos = startY + y;
+                if ((xPos >= 0) && (yPos >= 0) && (xPos < this.size) && (yPos < this.size)) {
+                    cell = this.getCell(xPos, yPos);
+                    mineNum += cell.mine;
+                }
+            }
+        }
+        return mineNum;
+    }
+
+    gameBoard.addNumbers = function() {
+        for (var x = 0; x < this.size; x++) {
+            for (var y = 0; y < this.size; y++) {
+                cell = this.getCell(x, y);
+                if (cell.mine == 0) {
+                    cell.mineNum = this.countSurroundingMines(x, y);
+                }
+            }
+        }        
+    }
+
     gameBoard.resetBoard(boardSize);
     gameBoard.addMines(maxMines);
+    gameBoard.addNumbers();
 
     return gameBoard;
 }

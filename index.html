@@ -11,6 +11,7 @@
                 <td ng-repeat="cell in gameRow.cells" 
                     ng-click="cell.visit()" 
                     class="ng-class:cell.cellStyle">
+                    {{cell.mineNum}}
                 </td>
             </tr>
         </table>
