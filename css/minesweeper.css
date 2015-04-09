@@ -14,7 +14,19 @@
     border-left: #aaa solid 4px;
     border-right: #eee solid 4px; 
 }
+
+.gameTable td:hover {
+    background-color: #dde;
+    cursor: pointer;
+}
+
 .gameTable td.visited {
     background-color: #eee;
     border: 1px solid #ddd;
 }
+
+.gameTable td.visited:hover {
+    background-color: #eee;
+    cursor: default;
+}
+
