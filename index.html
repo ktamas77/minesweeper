@@ -15,11 +15,21 @@
                 <td ng-repeat="cell in gameRow.cells" 
                     ng-click="cell.visit()" 
                     class="ng-class:cell.cellStyle">
-                    <div class="cellNum" ng-show="cell.visited">{{cell.mineNum}}</div>
+                    <div class="cellNum" ng-show="cell.visited" ng-if="cell.mineNum > 0">
+                        {{ cell.mineNum }}
+                    </div>
                 </td>
             </tr>
         </table>
-        <div class="gameover" ng-show="gameBoard.gameStatus == 'lost'" ng-click="gameBoard.restart()">Game Over. Click here to restart.</div>
-        <div class="won" ng-show="gameBoard.gameStatus == 'won'" ng-click="gameBoard.restart()">Congratulations! Click here for a new game.</div>
+        <div class="gameover" 
+            ng-show="gameBoard.gameStatus == 'lost'" 
+            ng-click="gameBoard.restart()">
+            Game Over. Click here to restart.
+        </div>
+        <div class="won" 
+            ng-show="gameBoard.gameStatus == 'won'"
+            ng-click="gameBoard.restart()">
+            Congratulations! Click here for a new game.
+        </div>
     </body>
 </html>

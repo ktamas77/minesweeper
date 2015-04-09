@@ -18,6 +18,8 @@ function initGameBoard(boardSize, maxMines) {
                     visited: 0,
                     mine: 0,
                     mineNum: 0,
+                    cellX: x,
+                    cellY: y,
                     cellStyle: 'default',
                     visit: function() {
                         if (gameBoard.gameStatus == 'new') {
@@ -27,6 +29,9 @@ function initGameBoard(boardSize, maxMines) {
                                 gameBoard.totalVisited++;
                                 if (gameBoard.totalVisited == gameBoard.totalCells - gameBoard.maxMines) {
                                     gameBoard.gameStatus = 'won';
+                                }
+                                if (this.mineNum == 0) {
+                                    gameBoard.unCover(this.cellX, this.cellY);
                                 }
                             } else {
                                 this.cellStyle = 'mine';
@@ -75,6 +80,25 @@ function initGameBoard(boardSize, maxMines) {
             }
         }
         return mineNum;
+    }
+
+    gameBoard.unCover = function(startX, startY) {
+        for (var x = -1; x < 2; x++) {
+            for (var y = -1; y < 2; y++) {
+                xPos = startX + x;
+                yPos = startY + y;
+                if ((xPos >= 0) && (yPos >= 0) && (xPos < this.size) && (yPos < this.size)) {
+                    cell = this.getCell(xPos, yPos);
+                    if (cell.visited == 0) {
+                        cell.visited = 1;
+                        cell.cellStyle = 'visited';
+                        if (cell.mineNum == 0) {
+                            this.unCover(xPos, yPos);
+                        }
+                    }
+                }
+            }
+        }        
     }
 
     gameBoard.addNumbers = function() {

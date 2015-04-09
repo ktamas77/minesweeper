@@ -1,14 +1,15 @@
 .gameTable { 
     border: 8px solid black;
     padding: 0px;
-    border-spacing: 0;
+    border-spacing: 1;
+    border-collapse: separate;
 }
 .gameTable td { 
     width: 40px; 
     height: 40px; 
     background-color: #ddd;
     margin: 0px;
-    border-width: 2px;
+    padding: 0px;
     border-bottom: #aaa solid 4px;
     border-top: #eee solid 4px; 
     border-left: #aaa solid 4px;
@@ -24,7 +25,7 @@
 
 .gameTable td.visited {
     background-color: #eee;
-    border: 1px solid #ddd;
+    border: 4px solid #eee;
 }
 
 .gameTable td.visited:hover {
