@@ -1,0 +1,19 @@
+.gameTable { 
+    border: 8px solid black;
+    padding: 0px;
+}
+.gameTable td { 
+    width: 40px; 
+    height: 40px; 
+    background-color: #ddd;
+    margin: 0px;
+    border-width: 2px;
+    border-bottom: #aaa solid 4px;
+    border-top: #eee solid 4px; 
+    border-left: #aaa solid 4px;
+    border-right: #eee solid 4px; 
+}
+.gameTable td.visited {
+    background-color: #fff;
+    border-width: 0px;
+}
