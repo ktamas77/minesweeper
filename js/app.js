@@ -1,7 +1,7 @@
 // --- build empty game table
-function initGameBoard() {
-    var boardSize = 10;
+function initGameBoard(boardSize) {
     var gameBoard = {};
+    gameBoard.size = boardSize;
     gameBoard.rows = [];
     for (var y =0; y < boardSize; y++) {
         var gameBoardRow = {}
@@ -20,7 +20,7 @@ function initGameBoard() {
     var mineSweeperApp = angular.module('mineSweeperApp', []);
 
     mineSweeperApp.controller('GameboardController', ['$scope', function ($scope) {
-        $scope.gameBoard = initGameBoard();
+        $scope.gameBoard = initGameBoard(10);
     }]);
 
 })();
