@@ -96,7 +96,7 @@ function initGameBoard(boardSize, maxMines) {
                     if (cell.visited == 0) {
                         cell.markVisited();
                         if (cell.mineNum == 0) {
-                            this.unCover(xPos, yPos);
+                            this.unCover(cell);
                         }
                     }
                 }
