@@ -115,16 +115,17 @@ function initGameBoard(boardSize, maxMines) {
         }        
     }
 
-    gameBoard.restart = function() {
-        maxMines = this.maxMines;
-        gameBoard.resetBoard(this.size);
-        gameBoard.addMines(maxMines);
-        gameBoard.addNumbers();        
+    gameBoard.start = function(boardSize, maxMines) {
+        this.resetBoard(boardSize);
+        this.addMines(maxMines);
+        this.addNumbers();        
     }
 
-    gameBoard.resetBoard(boardSize);
-    gameBoard.addMines(maxMines);
-    gameBoard.addNumbers();
+    gameBoard.restart = function() {
+        this.start(this.size, this.maxMines);
+    }
+
+    gameBoard.start(boardSize, maxMines);
 
     return gameBoard;
 }
