@@ -18,8 +18,8 @@ function initGameBoard(boardSize, maxMines) {
                     visited: 0,
                     mine: 0,
                     mineNum: 0,
-                    cellX: x,
-                    cellY: y,
+                    x: x,
+                    y: y,
                     cellStyle: 'default',
                     markVisited: function() {
                         this.visited = 1;
@@ -35,7 +35,7 @@ function initGameBoard(boardSize, maxMines) {
                             if (this.mine == 0) {
                                 this.markVisited();
                                 if (this.mineNum == 0) {
-                                    gameBoard.unCover(this.cellX, this.cellY);
+                                    gameBoard.unCover(this);
                                 }
                             } else {
                                 this.cellStyle = 'mine';
@@ -71,12 +71,12 @@ function initGameBoard(boardSize, maxMines) {
         }
     }
 
-    gameBoard.countSurroundingMines = function(startX, startY) {
+    gameBoard.countSurroundingMines = function(startCell) {
         mineNum = 0;
         for (var x = -1; x < 2; x++) {
             for (var y = -1; y < 2; y++) {
-                xPos = startX + x;
-                yPos = startY + y;
+                xPos = startCell.x + x;
+                yPos = startCell.y + y;
                 if ((xPos >= 0) && (yPos >= 0) && (xPos < this.size) && (yPos < this.size)) {
                     cell = this.getCell(xPos, yPos);
                     mineNum += cell.mine;
@@ -86,11 +86,11 @@ function initGameBoard(boardSize, maxMines) {
         return mineNum;
     }
 
-    gameBoard.unCover = function(startX, startY) {
+    gameBoard.unCover = function(startCell) {
         for (var x = -1; x < 2; x++) {
             for (var y = -1; y < 2; y++) {
-                xPos = startX + x;
-                yPos = startY + y;
+                xPos = startCell.x + x;
+                yPos = startCell.y + y;
                 if ((xPos >= 0) && (yPos >= 0) && (xPos < this.size) && (yPos < this.size)) {
                     cell = this.getCell(xPos, yPos);
                     if (cell.visited == 0) {
@@ -109,7 +109,7 @@ function initGameBoard(boardSize, maxMines) {
             for (var y = 0; y < this.size; y++) {
                 cell = this.getCell(x, y);
                 if (cell.mine == 0) {
-                    cell.mineNum = this.countSurroundingMines(x, y);
+                    cell.mineNum = this.countSurroundingMines(cell);
                 }
             }
         }        
