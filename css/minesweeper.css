@@ -3,6 +3,7 @@
     padding: 0px;
     border-spacing: 1;
     border-collapse: separate;
+    background-color: #fff;
 }
 .gameTable td { 
     width: 40px; 
@@ -34,7 +35,7 @@
 }
 
 .gameTable td.mine {
-    background-color: #f55;
+    background-color: #f77;
     border: 4px solid #855;
     cursor: default;
 }
@@ -46,26 +47,26 @@
     font-weight: bold;
 }
 
-div.gameover {
+.gameTable div.cellMine {
+    color: #f00;
+}
+
+div.gameStatus {
     border: 2px solid black;
-    background-color: red;
     color: white;
     width: 200px;
     padding: 4px;
     font-family: verdana, arial;
-    font-size: 12px;
+    font-size: 16px;
     margin: 4px;
-    cursor: pointer;
+    padding: 10px;
+    cursor: pointer;    
+}
+
+div.lost {
+    background-color: #f55;
 }
 
 div.won {
-    border: 2px solid black;
-    background-color: green;
-    color: white;
-    width: 200px;
-    padding: 4px;
-    font-family: verdana, arial;
-    font-size: 12px;
-    margin: 4px;
-    cursor: pointer;
+    background-color: #5f5;
 }
