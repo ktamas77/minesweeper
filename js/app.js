@@ -21,15 +21,19 @@ function initGameBoard(boardSize, maxMines) {
                     cellX: x,
                     cellY: y,
                     cellStyle: 'default',
+                    markVisited: function() {
+                        this.visited = 1;
+                        this.cellStyle = 'visited';
+                        gameBoard.totalVisited++;
+                        if (gameBoard.totalVisited == gameBoard.totalCells - gameBoard.maxMines) {
+                            gameBoard.gameStatus = 'won';
+                        }
+                    },
                     visit: function() {
                         if (gameBoard.gameStatus == 'new') {
                             this.visited = 1;
                             if (this.mine == 0) {
-                                this.cellStyle = 'visited';
-                                gameBoard.totalVisited++;
-                                if (gameBoard.totalVisited == gameBoard.totalCells - gameBoard.maxMines) {
-                                    gameBoard.gameStatus = 'won';
-                                }
+                                this.markVisited();
                                 if (this.mineNum == 0) {
                                     gameBoard.unCover(this.cellX, this.cellY);
                                 }
@@ -90,8 +94,7 @@ function initGameBoard(boardSize, maxMines) {
                 if ((xPos >= 0) && (yPos >= 0) && (xPos < this.size) && (yPos < this.size)) {
                     cell = this.getCell(xPos, yPos);
                     if (cell.visited == 0) {
-                        cell.visited = 1;
-                        cell.cellStyle = 'visited';
+                        cell.markVisited();
                         if (cell.mineNum == 0) {
                             this.unCover(xPos, yPos);
                         }

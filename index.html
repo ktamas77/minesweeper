@@ -18,6 +18,9 @@
                     <div class="cellNum" ng-show="cell.visited" ng-if="cell.mineNum > 0">
                         {{ cell.mineNum }}
                     </div>
+                    <div class="cellNum" ng-show="!cell.visited" ng-if="gameBoard.gameStatus == 'won'">
+                        x
+                    </div>
                 </td>
             </tr>
         </table>
