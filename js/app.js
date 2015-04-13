@@ -54,20 +54,24 @@ function initGameBoard(boardSize, maxMines) {
         return this.rows[y].cells[x];
     };
 
+    // Add Random Mines with O(n)
     gameBoard.addMines = function(maxMines) {
         if (maxMines > this.totalCells) {
             maxMines = totalCells;
         }
         this.maxMines = maxMines;
-        var minesAdded = 0;
-        while (minesAdded < this.maxMines) {
-            x = Math.round(Math.random() * (this.size - 1));
-            y = Math.round(Math.random() * (this.size - 1));
+        randNums = [];
+        for (i = 0; i < this.totalCells; i++) {
+            randNums.push(i);
+        }
+        for (i = 0; i < maxMines; i++) {
+            endPos = randNums.length - 1 - i;
+            randPos = Math.floor(Math.random() * endPos);
+            randNum = randNums[randPos];
+            x = Math.floor(randNum / this.size);
+            y = Math.floor(randNum % this.size);
             cell = this.getCell(x, y);
-            if (cell.mine == 0) {
-                cell.mine = 1;
-                minesAdded++;
-            }
+            cell.mine = 1;
         }
     }
 
