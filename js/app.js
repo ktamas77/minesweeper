@@ -69,7 +69,7 @@ function initGameBoard(boardSize, maxMines) {
             randPos = Math.floor(Math.random() * endPos);
             randNum = randNums[randPos];
             x = Math.floor(randNum / this.size);
-            y = Math.floor(randNum % this.size);
+            y = randNum % this.size;
             cell = this.getCell(x, y);
             cell.mine = 1;
         }
